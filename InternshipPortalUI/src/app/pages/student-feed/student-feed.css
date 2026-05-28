@@ -1,0 +1,95 @@
+.feed-container {
+  padding: 30px;
+  background-color: #f8f9fc;
+  min-height: 100vh;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.feed-header h2 {
+  color: #0f172a;
+  font-size: 24px;
+  margin-bottom: 4px;
+}
+
+.feed-header p {
+  color: #64748b;
+  margin-bottom: 30px;
+}
+
+.internship-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+.internship-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-header h3 {
+  color: #1e293b;
+  font-size: 18px;
+  margin: 0 0 8px 0;
+}
+
+.seats-badge {
+  background: #f0fdf4;
+  color: #166534;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 4px 8px;
+  border-radius: 20px;
+}
+
+.card-body {
+  margin: 16px 0;
+  border-top: 1px solid #f1f5f9;
+  padding-top: 14px;
+}
+
+.metric {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  margin-bottom: 6px;
+  color: #475569;
+}
+
+.duration {
+  font-size: 12px;
+  color: #64748b;
+  margin-top: 12px;
+  background: #f8fafc;
+  padding: 6px;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.btn-apply {
+  width: 100%;
+  background: #4f46e5;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 6px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.btn-apply:hover { background: #4338ca; }
+
+.empty-feed {
+  text-align: center;
+  padding: 60px 20px;
+  background: white;
+  border-radius: 12px;
+  border: 2px dashed #cbd5e1;
+}

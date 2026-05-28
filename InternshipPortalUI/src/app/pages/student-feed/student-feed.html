@@ -1,0 +1,41 @@
+<div class="feed-container">
+  <div class="feed-header">
+    <h2>🎯 Your Eligible Internship Smart Feed</h2>
+    <p>Showing personalized openings matched directly to your current academic GPA and clearing track status records.</p>
+  </div>
+
+  <div class="internship-grid">
+    <div class="internship-card" *ngFor="let role of eligibleInternships">
+      <div class="card-header">
+        <h3>{{ role.title }}</h3>
+        <span class="seats-badge">{{ role.availableSeats }} Seats Left</span>
+      </div>
+      
+      <div class="card-body">
+        <div class="metric">
+          <span>Min CGPA Requirement:</span>
+          <strong>{{ role.minCgpa | number:'1.2-2' }}</strong>
+        </div>
+        <div class="metric">
+          <span>Max Allowed Backlogs:</span>
+          <strong>{{ role.maxBacklogs }}</strong>
+        </div>
+        <div class="duration">
+          📅 <span>{{ role.startDate | date:'mediumDate' }}</span> to <span>{{ role.endDate | date:'mediumDate' }}</span>
+        </div>
+      </div>
+
+      <div class="card-footer">
+        <button class="btn-apply" (click)="applyForRole(role.internshipId)">
+          Apply Now &rarr;
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="empty-feed" *ngIf="eligibleInternships.length === 0">
+    <div class="empty-icon">⚠️</div>
+    <h3>No Placements Matching Your Profile</h3>
+    <p>You may not meet current grade constraints, or you have an active internship assignment during these date ranges.</p>
+  </div>
+</div>

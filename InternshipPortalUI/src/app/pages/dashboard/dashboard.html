@@ -1,0 +1,74 @@
+<div class="dashboard-container">
+  <h2>Administrative Student Placements Grid</h2>
+  
+  <table class="minimalist-grid">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Student Name</th>
+        <th>Roll Number</th>
+        <th>Target Internship</th>
+        <th>Status Badge</th>
+        <th>Execution Control</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let app of applicationsList">
+        <td>{{ app.applicationId }}</td>
+        <td>{{ app.studentName }}</td>
+        <td>{{ app.rollNumber }}</td>
+        <td><strong>{{ app.internshipTitle }}</strong></td>
+        <td>
+          <span class="badge" [ngClass]="app.status.toLowerCase()">
+            {{ app.status }}
+          </span>
+        </td>
+        <td>
+          <div class="action-buttons" *ngIf="app.status === 'Pending'">
+            <button class="btn-approve" (click)="handleStatusChange(app.applicationId, 'Approved')">
+              Approve
+            </button>
+            <button class="btn-reject" (click)="handleStatusChange(app.applicationId, 'Rejected')">
+              Reject
+            </button>
+          </div>
+
+          <div class="document-workflow" *ngIf="app.status === 'Approved'">
+            <div class="upload-box">
+              <input type="file" (change)="onFileInterception($event, app.applicationId)" accept=".pdf" />
+              <button class="btn-upload" 
+                      *ngIf="stagedFileMap.has(app.applicationId)" 
+                      (click)="requestUpload(app.applicationId)">
+                Upload PDF
+              </button>
+            </div>
+            <button class="btn-download" (click)="requestDownload(app.applicationId)">
+              Download Certificate
+            </button>
+          </div>
+
+          <span *ngIf="app.status === 'Rejected'" class="text-muted text-rejected">Dismissed</span>
+        </td>
+      </tr>
+      <tr *ngIf="applicationsList.length === 0">
+        <td colspan="6" style="text-align: center; padding: 20px; color: #777;">
+          No active student enrollment applications logged inside this filter grid yet.
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination-controls" *ngIf="totalPagesCount > 1">
+    <button [disabled]="currentActivePage === 1" (click)="fetchDataStream(currentActivePage - 1)">
+      &laquo; Previous
+    </button>
+    
+    <span class="page-indicator">
+      Page <strong>{{ currentActivePage }}</strong> of {{ totalPagesCount }}
+    </span>
+
+    <button [disabled]="currentActivePage === totalPagesCount" (click)="fetchDataStream(currentActivePage + 1)">
+      Next &raquo;
+    </button>
+  </div>
+</div>

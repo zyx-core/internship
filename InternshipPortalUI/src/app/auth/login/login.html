@@ -1,0 +1,21 @@
+<div style="max-width: 400px; margin: 80px auto; padding: 25px; border: 1px solid #ddd; border-radius: 6px; font-family: sans-serif;">
+  <h3>Administrative Portal Access</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div style="margin-bottom: 12px;">
+      <label style="display:block; margin-bottom:4px;">Email Address</label>
+      <input type="email" formControlName="email" style="width:100%; padding:8px; box-sizing: border-box;" />
+    </div>
+    <div style="margin-bottom: 15px;">
+      <label style="display:block; margin-bottom:4px;">Password</label>
+      <input type="password" formControlName="password" style="width:100%; padding:8px; box-sizing: border-box;" />
+    </div>
+    <button type="submit" [disabled]="loginForm.invalid" style="padding: 10px 15px; background: #28a745; color: #fff; border:none; cursor:pointer; width:100%; border-radius:4px;">
+      Authenticate
+    </button>
+  </form>
+  <p *ngIf="errorMessage" style="color: red; margin-top: 10px; font-size:14px; text-align:center;">{{ errorMessage }}</p>
+  
+  <div style="margin-top: 20px; text-align: center; font-size: 14px;">
+    <a routerLink="/register" style="color: #007bff; text-decoration: none;">New student? Create an identity profile</a>
+  </div>
+</div>
